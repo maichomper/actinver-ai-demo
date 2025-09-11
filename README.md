@@ -17,7 +17,7 @@ Mastra is an open-source TypeScript agent framework that helps you build AI appl
 ```
 src/
 ├── mastra/
-│   ├── agents/          # AI agent definitions (FundSage)
+│   ├── agents/          # AI agent definitions (HoldingsExpert)
 │   ├── tools/           # Financial analysis tools
 │   ├── workflows/       # Investment analysis workflows
 │   └── index.ts         # Main Mastra configuration
@@ -28,7 +28,7 @@ src/
 
 ## Features
 
-### 💰 FundSage Agent
+### 💰 HoldingsExpert Agent
 - **Financial Analysis Expert**: Specialized in funds, ETFs, and investment analysis
 - **Infosel Hub Integration**: Designed for users of the Infosel financial monitoring platform
 - **Market Intelligence**: Provides insights on fund performance, risk analysis, and portfolio optimization
@@ -87,33 +87,27 @@ This will:
 - Open the local playground in your browser
 - Enable you to chat with your agents and test workflows
 
-### Using FundSage Agent with Infosel MCP Tools
+### Using HoldingsExpert Agent with Infosel MCP Tools
 
-The FundSage agent can be used with or without MCP tools:
+The HoldingsExpert agent can be used with or without MCP tools:
 
 #### Basic Usage (No MCP)
 ```typescript
 import { mastra } from './mastra';
 
-const fundSageAgent = mastra.getAgent('fundSageAgent');
-const response = await fundSageAgent.generate('Explain ETFs to a beginner');
+const holdingsExpertAgent = mastra.getAgent('holdingsExpertAgent');
+const response = await holdingsExpertAgent.generate('Explain ETFs to a beginner');
 ```
 
 #### Enhanced Usage (With MCP Tools)
 ```typescript
-import { useFundSageWithInfoselTools } from './mastra/utils/mcp-integration';
+import { useHoldingsExpertWithInfoselTools } from './mastra/utils/mcp-integration';
 
-const fundSageAgent = mastra.getAgent('fundSageAgent');
-const response = await useFundSageWithInfoselTools(
-  fundSageAgent, 
+const holdingsExpertAgent = mastra.getAgent('holdingsExpertAgent');
+const response = await useHoldingsExpertWithInfoselTools(
+  holdingsExpertAgent, 
   'Analyze VTI performance over the last year'
 );
-```
-
-#### Running Examples
-```bash
-# Run the example script
-npx tsx src/examples/fundsage-example.ts
 ```
 
 ### Production Build

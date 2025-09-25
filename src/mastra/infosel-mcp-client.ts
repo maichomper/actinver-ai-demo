@@ -1,42 +1,26 @@
 import { MCPClient } from '@mastra/mcp';
 
-// Create MCP client only if environment variables are available
-const createMCPClient = () => {
-  const mcpUrl = process.env.INFOSEL_MCP_URL;
-  if (!mcpUrl) {
-    console.warn('INFOSEL_MCP_URL not configured. MCP client will be disabled.');
-    return null;
-  }
-
-  try {
-    return new MCPClient({
-      servers: {
-        infosel: {
-          url: new URL(mcpUrl),
-          requestInit: {
-            headers: {
-              'X-Infosel-Client-ID': process.env.INFOSEL_CLIENT_ID || '',
-              'X-Infosel-Access-Token': process.env.INFOSEL_ACCESS_TOKEN || '',
-              'X-Infosel-Refresh-Token': process.env.INFOSEL_REFRESH_TOKEN || '',
-              'X-Infosel-Realm': process.env.INFOSEL_REALM || '',
-              'X-Infosel-Environment': process.env.INFOSEL_ENVIRONMENT || '',
-            },
-          },
-          logger: (logMessage) => {
-            console.log(`[Infosel MCP] ${logMessage.level}: ${logMessage.message}`);
-          },
-          timeout: 30000, // 30 seconds
+export const infoselMCP = new MCPClient({
+  servers: {
+    infosel: {
+      url: new URL(process.env.INFOSEL_MCP_URL!),
+      requestInit: {
+        headers: {
+          'X-Infosel-Client-ID': process.env.INFOSEL_CLIENT_ID!,
+          'X-Infosel-Access-Token': process.env.INFOSEL_ACCESS_TOKEN!,
+          'X-Infosel-Refresh-Token': process.env.INFOSEL_REFRESH_TOKEN!,
+          'X-Infosel-Realm': process.env.INFOSEL_REALM!,
+          'X-Infosel-Environment': process.env.INFOSEL_ENVIRONMENT!,
         },
       },
-      timeout: 60000, // 60 seconds
-    });
-  } catch (error) {
-    console.error('Failed to create MCP client:', error);
-    return null;
-  }
-};
-
-export const infoselMCP = createMCPClient();
+      logger: (logMessage) => {
+        console.log(`[Infosel MCP] ${logMessage.level}: ${logMessage.message}`);
+      },
+      timeout: 30000, // 30 seconds
+    },
+  },
+  timeout: 60000, // 60 seconds
+});
 
 export async function getInfoselTools() {
   if (!infoselMCP) {

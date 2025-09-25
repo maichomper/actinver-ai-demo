@@ -100,3 +100,6 @@ Thumbs.db
 # Project specific
 output.txt
 .mastra
+
+# UI folder (has its own git repo)
+ui/

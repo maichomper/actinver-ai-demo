@@ -30,6 +30,7 @@ export const tradingExpertAgent = new Agent({
     },
   }),
   tools: {
+    ...(await infoselMCP.getTools()),
     portfolioTool,
     tradeHistoryTool,
     blackRockTopPerformingFundsTool,

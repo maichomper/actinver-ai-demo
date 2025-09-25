@@ -13,6 +13,21 @@ export const infoselMCP = new MCPClient({
           'X-Infosel-Environment': process.env.INFOSEL_ENVIRONMENT!,
         },
       },
+      // Add eventSourceInit for SSE connections (required when using custom headers)
+      eventSourceInit: {
+        fetch(input: Request | URL | string, init?: RequestInit) {
+          const headers = new Headers(init?.headers || {});
+          headers.set('X-Infosel-Client-ID', process.env.INFOSEL_CLIENT_ID!);
+          headers.set('X-Infosel-Access-Token', process.env.INFOSEL_ACCESS_TOKEN!);
+          headers.set('X-Infosel-Refresh-Token', process.env.INFOSEL_REFRESH_TOKEN!);
+          headers.set('X-Infosel-Realm', process.env.INFOSEL_REALM!);
+          headers.set('X-Infosel-Environment', process.env.INFOSEL_ENVIRONMENT!);
+          return fetch(input, {
+            ...init,
+            headers,
+          });
+        },
+      },
       logger: (logMessage) => {
         console.log(`[Infosel MCP] ${logMessage.level}: ${logMessage.message}`);
       },

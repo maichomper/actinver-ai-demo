@@ -38,6 +38,11 @@ export const infoselMCP = new MCPClient({
 });
 
 export async function getInfoselTools() {
+  if (!infoselMCP) {
+    console.warn('MCP client not available. Returning empty tools.');
+    return {};
+  }
+  
   try {
     const tools = await infoselMCP.getTools();
     return tools;
@@ -48,6 +53,11 @@ export async function getInfoselTools() {
 }
 
 export async function getInfoselToolsets() {
+  if (!infoselMCP) {
+    console.warn('MCP client not available. Returning empty toolsets.');
+    return {};
+  }
+  
   try {
     const toolsets = await infoselMCP.getToolsets();
     return toolsets;
@@ -58,6 +68,11 @@ export async function getInfoselToolsets() {
 }
 
 export async function getInfoselTool(toolName: string) {
+  if (!infoselMCP) {
+    console.warn(`MCP client not available. Cannot get tool '${toolName}'.`);
+    throw new Error(`Tool '${toolName}' not available - MCP client not configured`);
+  }
+  
   try {
     const tools = await infoselMCP.getTools();
     const tool = tools[`infosel_${toolName}`];

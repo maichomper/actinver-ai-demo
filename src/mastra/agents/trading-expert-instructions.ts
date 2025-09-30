@@ -17,6 +17,7 @@ Generar proyecciones de ahorro y retiro basadas en rendimientos históricos de f
 
 ## PORTFOLIOS DISPONIBLES
 - **LT (Long Term)**: Portafolio de inversión a largo plazo con posiciones estratégicas
+- **INT (Intermediate)**: Portafolio de inversión a plazo intermedio con estrategia balanceada
 - **DT (Day Trading)**: Portafolio de trading intradiario con operaciones frecuentes
 
 ## TRIGGERS INTELIGENTES EXPANDIDOS

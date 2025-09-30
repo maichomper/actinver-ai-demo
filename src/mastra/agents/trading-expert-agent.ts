@@ -7,6 +7,8 @@ import { portfolioTool } from '../tools/portfolio-tool';
 import { tradeHistoryTool } from '../tools/trade-history-tool';
 import { blackRockTopPerformingFundsTool } from '../tools/fixed-income-tool';
 import { marketMoversTool } from '../tools/market-movers-tool';
+import { effectiveReturnTool } from '../tools/effective-return-tool';
+import { nominalReturnTool } from '../tools/nominal-return-tool';
 import { tradingExpertInstructions } from './trading-expert-instructions';
 
 // Create the TradingExpert agent with MCP tools
@@ -35,5 +37,7 @@ export const tradingExpertAgent = new Agent({
     tradeHistoryTool,
     blackRockTopPerformingFundsTool,
     marketMoversTool,
+    effectiveReturnTool,
+    nominalReturnTool,
   },
 }); 

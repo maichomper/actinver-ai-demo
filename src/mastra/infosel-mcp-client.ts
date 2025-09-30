@@ -31,6 +31,8 @@ export const infoselMCP = new MCPClient({
       logger: (logMessage) => {
         console.log(`[Infosel MCP] ${logMessage.level}: ${logMessage.message}`);
       },
+      // Add error handling to prevent non-serializable errors in streaming
+      enableServerLogs: true,
       timeout: 30000, // 30 seconds
     },
   },

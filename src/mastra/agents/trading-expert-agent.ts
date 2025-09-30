@@ -14,7 +14,7 @@ import { tradingExpertInstructions } from './trading-expert-instructions';
 // Create the TradingExpert agent with MCP tools
 export const tradingExpertAgent = new Agent({
   name: 'TradingExpert',
-  description: 'Agente especializado en trading, diseñado para usuarios de la plataforma de Actinver Trade.',
+  description: 'Agente copiloto asesor patrimonial de Actinver.',
   instructions: tradingExpertInstructions,
   model: openai('gpt-4.1'),
   memory: new Memory({
